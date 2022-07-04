@@ -1,6 +1,9 @@
 pipeline { 
   agent any
   stages { 
-    stage ('build step'){
+    stage ('clone step'){
       steps {
-        sh 'mvn package'}}}}
+        sh 'rm -rf hello-word-war'
+      sh 'git clone https://github.com/PoojaVika/hello-world-war.git' }}
+  stage ('build step'){
+    steps { sh 'mvn package' }}}}
