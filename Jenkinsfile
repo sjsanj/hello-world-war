@@ -1,7 +1,14 @@
 pipeline { 
   agent { label 'node100' }
   stages { 
-    stage ('clone step'){
+    stage ('select Parameters'){
+      steps {
+        script {
+          properties ([
+            parameters (
+            choice(
+              choices: ['one','two','three']))]) } }}
+        stage ('clone step'){
       steps {
         sh 'rm -rf hello-world-war'
       sh 'git clone https://github.com/PoojaVika/hello-world-war.git' }}
