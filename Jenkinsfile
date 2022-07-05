@@ -1,5 +1,5 @@
 pipeline { 
-  agent {
+    agent {
       label 'node100'
   }
    parameters {
