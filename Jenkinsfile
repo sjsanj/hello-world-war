@@ -1,9 +1,10 @@
 pipeline { 
   agent { label 'node100' }
-       
-     parameters {
-        string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
-    }
+   parameters {
+         choice(
+              choices: ['Pooja','Vikas','Chinna','Kumar'],
+              name: 'Number of Employees' )
+   }
     stages{
         stage ('clone step'){
       steps {
