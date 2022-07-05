@@ -1,5 +1,7 @@
 pipeline { 
-  agent { label 'node100' }
+  agent {
+      label 'node100'
+  }
    parameters {
          choice(
               choices: ['Pooja','Vikas','Chinna','Kumar'],
