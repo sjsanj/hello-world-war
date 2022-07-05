@@ -1,8 +1,5 @@
 pipeline { 
   agent { label 'node100' }
-  stages{
-        stage ('Select Employee Name'){
-      steps {
         script {
      properties ([
        parameters ([
@@ -12,8 +9,7 @@ pipeline {
             ])
           ]) 
       }
-        }
-  }
+    stages{
         stage ('clone step'){
       steps {
         sh 'rm -rf hello-world-war'
