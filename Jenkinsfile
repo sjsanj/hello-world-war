@@ -7,8 +7,8 @@ pipeline {
           properties ([
             parameters ([
             choice(
-              choices: ['Slave1','Slave2','Slave3','Salve4']) 
-              name : 'Numer of Salves'
+              choices: ['Slave1','Slave2','Slave3','Salve4'],
+              name: 'Number of Salves' )
             ])
           ]) 
         } 
