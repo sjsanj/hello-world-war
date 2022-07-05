@@ -1,5 +1,8 @@
 pipeline { 
   agent { label 'node100' }
+  stages{
+        stage ('Select Employee Name'){
+      steps {
      properties ([
        parameters ([
          choice(
@@ -7,6 +10,9 @@ pipeline {
               name: 'Number of Employees' )
             ])
           ]) 
+      }
+        }
+  }
   stages{
         stage ('clone step'){
       steps {
