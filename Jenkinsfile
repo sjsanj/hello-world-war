@@ -1,19 +1,13 @@
 pipeline { 
   agent { label 'node100' }
-  stages { 
-    stage ('Select Parameters'){
-      steps {
-        script {
-          properties ([
-            parameters ([
-            choice(
-              choices: ['Slave1','Slave2','Slave3','Salve4'],
-              name: 'Number of Salves' )
+     properties ([
+       parameters ([
+         choice(
+              choices: ['Pooja','Vikas','Chinna','Kumar'],
+              name: 'Number of Employees' )
             ])
           ]) 
-        } 
-      }
-    }
+  stages{
         stage ('clone step'){
       steps {
         sh 'rm -rf hello-world-war'
