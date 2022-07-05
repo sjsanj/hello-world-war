@@ -13,7 +13,6 @@ pipeline {
       }
         }
   }
-  stages{
         stage ('clone step'){
       steps {
         sh 'rm -rf hello-world-war'
