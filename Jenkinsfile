@@ -10,8 +10,8 @@ pipeline {
 	 
         stage('Docker Build and Tag') {
            steps {
-                sh 'docker build -t cicd .' 
-                sh 'docker tag docker_icicd Poovikas/cicd:latest'  
+                sh 'sudo docker build -t cicd .' 
+                sh 'sudo docker tag docker_icicd Poovikas/cicd:latest'  
           }
         }
 		
@@ -31,7 +31,7 @@ pipeline {
         stage('Run Docker Deploy') {
              
             steps {
-                sh 'docker run -d -p 8888:8080 PooVikas/cicd:latest'
+                sh 'sudo docker run -d -p 8888:8080 PooVikas/cicd:latest'
  
             }
         }
