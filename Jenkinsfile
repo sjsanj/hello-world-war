@@ -4,7 +4,7 @@ pipeline {
  stages {
       stage('checkout') {
            steps {             
-                git branch: 'master', url: 'https://github.com/DGMalli/hello-world-war.git'             
+                git branch: 'master', url: 'https://github.com/PoojaVika/hello-world-war.git'             
           }
         }       
 
@@ -34,7 +34,7 @@ stage('Login to Docker hub') {
              
             steps 
 	      {
-                sh "sudo docker run -d -p 8888:8080 poovikas/hello:v1"
+                sh "sudo docker run -d -p 8080:8080 poovikas/hello:v1"
              }
         }
  
