@@ -11,8 +11,8 @@ pipeline {
   stage('Docker Build and Tag') {
            steps {  
 		 
-                sh 'sudo docker build -t cicd:v2 .' 
-                sh 'sudo docker tag cicd-docker poovikas/cicd:v2' 
+                sh 'sudo docker build -t hello:v1 .' 
+                sh 'sudo docker tag test poovikas/hello:v1' 
             }
         }
 
@@ -26,7 +26,7 @@ stage('Login to Docker hub') {
   stage('Publish image to Docker Hub') {
           
             steps {
-       	  sh  'sudo docker push poovikas/cicd:v2'  
+       	  sh  'sudo docker push poovikas/hello:v1'  
         }                 
           
         }     
@@ -34,7 +34,7 @@ stage('Login to Docker hub') {
              
             steps 
 	      {
-                sh "sudo docker run -d -p 8888:8080 poovikas/cicd:v2"
+                sh "sudo docker run -d -p 8888:8080 poovikas/hello:v1"
              }
         }
  
