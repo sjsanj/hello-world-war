@@ -12,7 +12,7 @@ pipeline {
            steps {  
 		 
                 sh 'sudo docker build -t cicd:latest .' 
-                sh 'sudo docker tag cicd-docker poovikas/cicd:latest' 
+                sh 'sudo docker tag cicd-docker poovikas/cicd:v1' 
             }
         }
 
