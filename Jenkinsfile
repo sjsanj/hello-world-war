@@ -12,7 +12,7 @@ pipeline {
            steps {  
 		 
                 sh 'sudo docker build -t hello:v1 .' 
-                sh 'sudo docker tag hello poovikas/hello:v1' 
+                sh 'sudo docker tag hello:v1 poovikas/hello:v1' 
             }
         }
 
