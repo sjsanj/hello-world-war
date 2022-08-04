@@ -1,57 +1,41 @@
 pipeline {
-    agent any
+    agent { label 'docker' }
  
-   tools
-    {
-       maven "Maven"
-    }
  stages {
       stage('checkout') {
            steps {
              
-                git branch: 'master', url: ''
+                git branch: 'master', url: 'https://github.com/PoojaVika/hello-world-war.git'
              
-          }
-        }
-  stage('Execute Maven') {
-           steps {
-             
-                sh 'mvn package'             
           }
         }
         stage('Docker Build and Tag') {
            steps {
               
-                sh 'docker build -t samplewebapp:latest .' 
-                sh 'docker tag samplewebapp nikhilnidhi/samplewebapp:latest'
-                //sh 'docker tag samplewebapp nikhilnidhi/samplewebapp:$BUILD_NUMBER'
+                sh 'docker build -t cicd .' 
+                sh 'docker tag docker_icicd Poovikas/cicd:latest'
                
           }
         }
+		
+		stage('docker login') {
+			steps{
+			sh 'sudo docker login --username=PooVikas --password=Pooja@0108'
+			}
+		}
      
-  stage('Publish image to Docker Hub') {
+        stage('Publish image to Docker Hub') {
           
             steps {
-        withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
-          sh  'docker push nikhilnidhi/samplewebapp:latest'
-        //  sh  'docker push nikhilnidhi/samplewebapp:$BUILD_NUMBER' 
-        }
+                  sh 'sudo docker push PooVikas/cicd:latest'
                   
           }
         }
      
-      stage('Run Docker container on Jenkins Agent') {
-             
-            steps 
-   {
-                sh "docker run -d -p 8003:8080 nikhilnidhi/samplewebapp"
- 
-            }
-        }
- stage('Run Docker container on remote hosts') {
+        stage('Run Docker Deploy') {
              
             steps {
-                sh "docker -H ssh://jenkins@172.31.28.25 run -d -p 8003:8080 nikhilnidhi/samplewebapp"
+                sh 'docker run -d -p 8888:8080 PooVikas/cicd:latest'
  
             }
         }
