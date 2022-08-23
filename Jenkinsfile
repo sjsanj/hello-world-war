@@ -29,6 +29,14 @@ pipeline{
 		
               }
          }
+	 stage('deploy'){
+             agent { label 'deployhelm' }
+                steps{
+                        sh "helm repo add helm_tomcat-helm https://helmpooj.jfrog.io/artifactory/api/helm/helm_tomcat-helm --username pooja.ab1994@gmail.com --password AKCp8nG69WYtBnNU9NKXJjGgazccbYAB9FicN8GkjKdgcCrg6pH3HGV1NWgLUJvpnB1kfde5q"
+                        sh "helm repo update"
+                        sh "helm upgrade --install tomcat helm_tomcat-helm/tomcat --set tag_name=${BUILD_NUMBER} --version ${BUILD_NUMBER}"
+                 }
+            }
  
        }
     }
