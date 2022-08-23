@@ -5,7 +5,7 @@ pipeline{
      	 stage('Checkout external project') {
              steps {
 		sh "rm -rf hello-world-war"
-            	sh "git clone https://github.com/PoojaVika/hello-world-war.git"
+            	sh "git clone https://github.com/sjsanj/hello-world-war.git"
             	sh "ls -lat"
             	sh "pwd"
        	     }
