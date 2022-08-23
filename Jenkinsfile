@@ -1,42 +1,31 @@
-pipeline {
-    agent any	
-	 
- stages {
-      stage('checkout') {
-           steps {             
-                git branch: 'master', url: 'https://github.com/PoojaVika/hello-world-war.git'             
+pipeline{
+      agent any
+      {
+      stages{
+     	 stage('Checkout external project') {
+             steps {
+            	sh "git clone https://github.com/PoojaVika/hello-world-war.git"
+            	sh "ls -lat"
+            	sh "pwd"
+       	     }
           }
-        }       
-
-  stage('Docker Build and Tag') {
-           steps {  
-		 
-                sh 'sudo docker build -t hello:v1 .' 
-                sh 'sudo docker tag hello:v1 poovikas/hello:v1' 
-            }
-        }
-
-stage('Login to Docker hub') {
-           steps {
-              
-                sh 'sudo docker login --username=poovikas --password=Pooja@0108'
+       	  stage('build'){
+              steps{
+                 dir('hello-world-war') {
+		    sh "pwd"
+	            sh "ls"
+                    sh "echo ${BUILD_NUMBER}"
+                    sh "sudo docker build -t poovikas/tomcat:${BUILD_NUMBER} ."
+         	 }
+              }
           }
-        }
-     
-  stage('Publish image to Docker Hub') {
-          
-            steps {
-       	  sh  'sudo docker push poovikas/hello:v1'  
-        }                 
-          
-        }     
-      stage('Run Docker container on Jenkins Agent') {
-             
-            steps 
-	      {
-                sh "sudo docker run -d -p 8080:8080 poovikas/hello:v1"
-             }
-        }
+          stage('publish') {
+              steps {
+                 sh 'sudo docker login --username=poovikas --password=Pooja@0108'
+                 sh "sudo docker push poovikas/tomcat:${BUILD_NUMBER}"
+		
+              }
+         }
  
+       }
     }
-	}
