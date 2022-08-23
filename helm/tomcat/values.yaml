@@ -1,0 +1,13 @@
+deployment_name: tomcat
+replicas_no: 3
+selector_name: tomcat
+maxSurge: 1
+maxunavail: 0
+labels_name: tomcat
+container_name: tomcat
+image_name: poovikas/tomcat
+tag_name: 
+
+service_name: tomcat
+port_no: 8091
+target_port: 8080
