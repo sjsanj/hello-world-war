@@ -22,8 +22,8 @@ pipeline{
           }
           stage('publish') {
               steps {
-                 sh 'sudo docker login --username=poovikas --password=Pooja@0108'
-                 sh "sudo docker push poovikas/tomcat:${BUILD_NUMBER}"
+                 sh 'docker login --username=poovikas --password=Pooja@0108'
+                 sh "docker push poovikas/tomcat:${BUILD_NUMBER}"
 		
               }
          }
