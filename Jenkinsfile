@@ -25,7 +25,7 @@ pipeline{
                  sh 'docker login --username=poovikas --password=Pooja@0108'
                  sh "docker push poovikas/tomcat:${BUILD_NUMBER}"
 		 sh "helm package --version ${BUILD_NUMBER} helm/tomcat/ "
-                 sh "curl -upooja.ab1994@gmail.com:4sm12cs013 -T tomcat-${BUILD_NUMBER}.tgz \"https://helmpooj.jfrog.io/artifactory/helm_tomcat-helm/tomcat-${BUILD_NUMBER}.tgz\""
+                 sh "curl -H "X-JFrog-Art-Api:AKCp8nG69WYtBnNU9NKXJjGgazccbYAB9FicN8GkjKdgcCrg6pH3HGV1NWgLUJvpnB1kfde5q" -T tomcat-${BUILD_NUMBER}.tgz \"https://helmpooj.jfrog.io/artifactory/helm_tomcat-helm/tomcat-${BUILD_NUMBER}.tgz\""
 		
               }
          }
