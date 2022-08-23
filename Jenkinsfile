@@ -16,7 +16,7 @@ pipeline{
 		    sh "pwd"
 	            sh "ls"
                     sh "echo ${BUILD_NUMBER}"
-                    sh "sudo docker build -t poovikas/tomcat:${BUILD_NUMBER} ."
+                    sh "docker build -t poovikas/tomcat:${BUILD_NUMBER} ."
          	 }
               }
           }
